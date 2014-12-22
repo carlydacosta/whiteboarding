@@ -90,12 +90,52 @@ class LinkedList():
 		print k,"node from the end:", p2.data
 		return
 
+	def listLength(self):
+		current = self.head
+		count = 0
+
+		while current:
+			count = count + 1
+			current = current.next
+
+		print "list length:", count
+
 	def printNodes(self):
 		node = self.head
+		print "head:", node
 
 		while node:
 			print node.data
 			node = node.next
+
+	def reverseList(self):
+		current = self.head						# Start at the head
+		node = Node(None)
+		previous = node						# Since at the head, there is no previous
+
+		while current != None:
+			
+			if current.next == None:
+				self.head = current
+				current.next = previous
+
+				print "current", current.data, "head:", self.head.data, "previous:", current.next
+				break
+			
+			else:
+				next = current.next					# Create variable 'next' to hold current.next node's information
+				print "next", next.data
+			
+				current.next = previous				# Now I can reverse the pointer of current.next to the previous node
+				print "pointer reversed to previous:", current.next.data
+			
+				previous = current					# Move the pointer from previous to current
+				print "previous", previous.data
+				
+				current = next						# Move the pointer from current to next
+				print "new current", current.data, "current.next", current.next
+
+			self.printNodes()
 		
 
 linkedlist = LinkedList()
@@ -107,13 +147,16 @@ linkedlist.addNode(7)
 linkedlist.addNode(2)
 linkedlist.addNode(9)
 linkedlist.addNode(11)
-
-linkedlist.findNode(2)
-
-linkedlist.insertNode(11,3)
-
-linkedlist.deleteNode(9)
-
 linkedlist.printNodes()
+linkedlist.reverseList()
 
-linkedlist.findKFromEnd(3)
+#linkedlist.listLength()
+
+#linkedlist.findNode(2)
+
+#linkedlist.insertNode(11,3)
+
+#linkedlist.deleteNode(9)
+
+#linkedlist.findKFromEnd(3)
+
