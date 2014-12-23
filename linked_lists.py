@@ -101,14 +101,18 @@ class LinkedList():
 		print "list length:", count
 
 	def printNodes(self):
+		print "printNodes function"
 		node = self.head
 		print "head:", node
 
 		while node:
 			print node.data
+			if node.next == None:
+				return
 			node = node.next
 
 	def reverseList(self):
+		print "############reverseList function############"
 		current = self.head						# Start at the head
 		node = Node(None)
 		previous = node						# Since at the head, there is no previous
@@ -119,23 +123,23 @@ class LinkedList():
 				self.head = current
 				current.next = previous
 
-				print "current", current.data, "head:", self.head.data, "previous:", current.next
+				# print "current", current.data, "head:", self.head.data, "previous:", current.next.data
 				break
 			
 			else:
 				next = current.next					# Create variable 'next' to hold current.next node's information
-				print "next", next.data
+				# print "next", next.data
 			
 				current.next = previous				# Now I can reverse the pointer of current.next to the previous node
-				print "pointer reversed to previous:", current.next.data
+				# print "pointer reversed to previous:", current.next.data
 			
 				previous = current					# Move the pointer from previous to current
-				print "previous", previous.data
-				
+				# print "previous", previous.data
+					
 				current = next						# Move the pointer from current to next
-				print "new current", current.data, "current.next", current.next
+				# print "new current", current.data, "current.next", current.next
 
-			self.printNodes()
+		self.printNodes()
 		
 
 linkedlist = LinkedList()
