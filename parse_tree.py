@@ -55,3 +55,18 @@ def evaluate(parseTree):
 		return fn(evaluate(leftC), evaluate(rightC))	# Pass in the values for the function to evaluate, which in this case we can call our function recursively, since eventually we will reach a leaf node consisting of an operand, which will then be evaluated.
 	else:
 		return parseTree.getRootVal		# Base case of no children, we know it's a leaf node and hence the operand to be evaluated and returned, causing the call function to collapse.
+
+def postordereval(tree):
+	opers = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
+
+	res1 = None
+	res2 = None
+	
+	if tree:
+		res1 = postordereval(tree.getLeftChild())
+		res2 = postordereval(tree.getRightChild())
+		
+		if res1 and res2:
+			return opers[tree.getRootVal()](res1, res2)
+		else:
+			return tree.getRootVal()
